@@ -1,6 +1,5 @@
 <template>
     <div>
-        <h3>Use Case log page 1</h3>
         <use-case-table :items="items"></use-case-table>
     </div>
 </template>
@@ -16,8 +15,8 @@ import JsonService from '~/services/jsonService'
             }
         },
         created(){
-            // JsonService.getAlllogs()
-            // .then((res)=>this.items=res.data)
+            JsonService.getAlllogs()
+            .then((res)=>this.items=res.data)
         },
         components:{
             UseCaseTable
