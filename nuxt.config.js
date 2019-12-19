@@ -35,7 +35,8 @@ export default {
   */
   plugins: [
     '~/plugins/vuetify',
-    '~/plugins/globals.js'
+    '~/plugins/globals.js',
+    '~/plugins/bus'
   ],
   /*
   ** Nuxt.js dev-modules
