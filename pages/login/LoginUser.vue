@@ -1,6 +1,6 @@
 <template>
   <v-card>
-    <v-col cols="6">
+    <v-col>
       <v-card>
         <v-form @submit.prevent="login">
           <v-text-field v-model="name" label="Name:" dense></v-text-field>
@@ -10,19 +10,7 @@
       </v-card>
     </v-col>
     <v-col cols="6">
-      <h3>Results :</h3>
-  <v-col>
-      <h5>User name :</h5>
-      <p>{{user.username}}</p>
-  </v-col>
-    <v-col>
-      <h5>Email :</h5>
-      <p>{{user.password}}</p>
-  </v-col>
-      <v-col>
-      <h5>Token :</h5>
-      <p>{{user.token}}</p>
-  </v-col>
+
 
     </v-col>
   </v-card>
@@ -30,9 +18,8 @@
 
 <script>
 
-import loginServis from '@/services/loginService'
 import { mapState } from 'vuex'
-import LoginService from '~/services/loginService'
+
 export default {
   data() {
     return {
