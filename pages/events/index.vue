@@ -27,6 +27,7 @@ export default {
     //Preko Vuexa
   async fetch({ store, error }) {
     try {
+      console.log("fetch eventa")
       await store.dispatch('events/getAllEvents')
     } catch (e) {
       error({

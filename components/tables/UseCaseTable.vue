@@ -13,6 +13,9 @@
       ></v-text-field>
     </v-card-title>
     <v-data-table :headers="headers" :items="items" :search="search" :item-key="items.id">
+      <template v-slot:item.select="{item}">
+        <v-icon large color="primary" @click="onselectItem(item.guid)">mdi-flag</v-icon>
+      </template>
       <!-- Dialog data with activator -->
       <template v-slot:item.data="{item}">
         <v-dialog v-model="dialog.data" persistent max-width="400px" :retain-focus="false">
@@ -62,11 +65,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
       search: '',
       headers: [
+        { text: 'Select', value: 'select', align: 'start' },        
         { text: 'Name', value: 'name', align: 'start' },
         { text: 'Data', value: 'data' },
         { text: 'Actor', value: 'actor' },
@@ -84,12 +89,12 @@ export default {
       }
     }
   },
-  props: {
-    items: {
-      type: Array,
-      default: []
-    }
-  },
+  // props: {
+  //   items: {
+  //     type: Array,
+  //     default: []
+  //   }
+  // },
   methods: {
     onSubmitDataHandler() {
       console.log('submit data table')
@@ -99,7 +104,18 @@ export default {
     },
     onSubmitSubscribersHandler() {
       console.log('submit subscribers')
+    },
+    onselectItem(key){
+      console.log("selected item",key)
+      this.$store.dispatch('logs/setSelectedLog')
+      //this.$router.push({ name: 'useCaseLog-id', params: { id: key } })
+
     }
+  },
+      computed: {
+    ...mapState({
+      items: state => state.logs.logs
+    })
   }
 }
 </script>
